@@ -43,6 +43,13 @@ function App() {
     fetchWords();
   };
 
+  const deleteWord = async (id) => {
+    if (window.confirm('Are you sure you want to delete this word?')) {
+      await axios.delete(`${API_URL}/api/words/${id}`);
+      fetchWords();
+    }
+  };
+
   const generateQuiz = async () => {
     const response = await axios.get(`${API_URL}/api/quiz`);
     setQuiz(response.data);
@@ -94,6 +101,7 @@ function App() {
                 {word.turkish} <AudioButton word={word.turkish} lang="tr" /> - 
                 {word.english} <AudioButton word={word.english} lang="en" />
                 <button onClick={() => startEditing(word)}>Edit</button>
+                <button onClick={() => deleteWord(word._id)}>Delete</button>
               </>
             )}
           </li>

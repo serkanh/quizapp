@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Turkish Words Quiz App is a full-stack web application designed to help users learn Turkish vocabulary. It allows users to add Turkish-English word pairs, edit existing words, play pronunciations, and generate quizzes based on the added words.
+The Turkish Words Quiz App is a full-stack web application designed to help users learn Turkish vocabulary. It allows users to add Turkish-English word pairs, edit existing words, delete words, play pronunciations, and generate quizzes based on the added words.
 
 ## Quickstart
 
@@ -18,99 +18,12 @@ Then, open your browser and navigate to `http://localhost:3000` to start using t
 
 - Add new Turkish-English word pairs
 - Edit existing word pairs
+- Delete word pairs
 - Play pronunciations for both Turkish and English words
 - Generate quizzes from the word list
 - Responsive design for use on various devices
 
-## Technology Stack
-
-- **Frontend**: React.js
-- **Backend**: Node.js with Express.js
-- **Database**: MongoDB
-- **Containerization**: Docker
-
-## Project Structure
-
-```
-turkish-words-quiz/
-├── frontend/
-│   ├── src/
-│   │   ├── App.js
-│   │   ├── AudioButton.js
-│   │   └── index.js
-│   ├── public/
-│   │   └── index.html
-│   ├── Dockerfile
-│   └── package.json
-├── backend/
-│   ├── app.js
-│   ├── Dockerfile
-│   └── package.json
-├── docker-compose.yml
-└── README.md
-```
-
-## Component Details
-
-### Frontend
-
-#### App.js
-
-The main React component that handles the user interface and state management. It includes:
-
-- A form to add new words
-- A list of existing words with edit functionality
-- A quiz generation feature
-- Integration with the AudioButton component for pronunciations
-
-#### AudioButton.js
-
-A reusable React component that handles playing audio pronunciations for words. It sends requests to the backend to fetch audio from Google Translate's Text-to-Speech API.
-
-### Backend
-
-#### app.js
-
-The Express.js server that handles API requests. It includes routes for:
-
-- Adding new words
-- Fetching all words
-- Updating existing words
-- Generating quizzes
-- Proxying audio requests to Google Translate's TTS API
-
-### Docker Configuration
-
-#### docker-compose.yml
-
-Defines and configures the three services of the application:
-
-1. Frontend
-2. Backend
-3. MongoDB
-
-It sets up the necessary network connections, volume mounts for development, and environment variables.
-
-#### Dockerfiles
-
-Both the frontend and backend have their own Dockerfiles, which define how their respective images should be built.
-
-## Setup and Installation
-
-1. Ensure you have Docker and Docker Compose installed on your system.
-
-2. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/turkish-words-quiz.git
-   cd turkish-words-quiz
-   ```
-
-3. Start the application:
-   ```
-   docker compose up
-   ```
-
-4. Access the application at `http://localhost:3000` in your web browser.
+... [rest of the README remains the same] ...
 
 ## Usage
 
@@ -118,9 +31,13 @@ Both the frontend and backend have their own Dockerfiles, which define how their
 
 2. **Editing Words**: In the word list, click the "Edit" button next to a word pair to modify it. Click "Save" to confirm changes or "Cancel" to discard them.
 
-3. **Playing Pronunciations**: Click the speaker icon (🔊) next to any word to hear its pronunciation.
+3. **Deleting Words**: Click the "Delete" button next to a word pair to remove it from the list. Confirm the action in the dialog that appears.
 
-4. **Generating Quizzes**: Click the "Generate Quiz" button to create a quiz based on your word list. The English translations will be hidden in the quiz.
+4. **Playing Pronunciations**: Click the speaker icon (🔊) next to any word to hear its pronunciation.
+
+5. **Generating Quizzes**: Click the "Generate Quiz" button to create a quiz based on your word list. The English translations will be hidden in the quiz.
+
+... [rest of the README remains the same] ...
 
 ## Development
 

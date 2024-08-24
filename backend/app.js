@@ -47,7 +47,6 @@ app.get('/api/words', async (req, res) => {
   }
 });
 
-// New route for updating a word
 app.put('/api/words/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -57,6 +56,20 @@ app.put('/api/words/:id', async (req, res) => {
       return res.status(404).json({ message: 'Word not found' });
     }
     res.json(updatedWord);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// New route for deleting a word
+app.delete('/api/words/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedWord = await Word.findByIdAndDelete(id);
+    if (!deletedWord) {
+      return res.status(404).json({ message: 'Word not found' });
+    }
+    res.json({ message: 'Word deleted successfully' });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
