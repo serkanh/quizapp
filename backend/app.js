@@ -61,7 +61,6 @@ app.put('/api/words/:id', async (req, res) => {
   }
 });
 
-// New route for deleting a word
 app.delete('/api/words/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -76,12 +75,52 @@ app.delete('/api/words/:id', async (req, res) => {
 });
 
 app.get('/api/quiz', async (req, res) => {
-  try {
-    const words = await Word.aggregate([{ $sample: { size: 10 } }]);
-    res.json(words);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+    try {
+      const allWords = await Word.find();
+      const quizSize = Math.min(10, allWords.length);
+      const shuffledWords = allWords.sort(() => 0.5 - Math.random());
+      const quiz = [];
+  
+      for (let i = 0; i < quizSize; i++) {
+        const correctWord = shuffledWords[i];
+        const options = [correctWord.english];
+  
+        // Add 3 more random options
+        while (options.length < 4) {
+          const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
+          if (!options.includes(randomWord.english) && randomWord.english !== correctWord.english) {
+            options.push(randomWord.english);
+          }
+        }
+  
+        // Shuffle options
+        options.sort(() => 0.5 - Math.random());
+  
+        quiz.push({
+          question: correctWord.turkish,
+          options: options,
+          correctAnswer: correctWord.english
+        });
+      }
+  
+      res.json(quiz);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+app.post('/api/quiz/grade', (req, res) => {
+  const { answers } = req.body;
+  let correctAnswers = 0;
+
+  answers.forEach(answer => {
+    if (answer.selectedAnswer === answer.correctAnswer) {
+      correctAnswers++;
+    }
+  });
+
+  const percentage = (correctAnswers / answers.length) * 100;
+  res.json({ score: percentage.toFixed(2) });
 });
 
 // Route for audio proxy

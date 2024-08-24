@@ -1,0 +1,68 @@
+.App {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .question-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .turkish-word {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 10px;
+  }
+  
+  .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .option input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  .option label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .quiz-controls {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .submit-quiz, .back-to-list {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  
+  .quiz-score {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .AudioButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-left: 5px;
+  }
